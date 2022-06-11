@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:14-alpine
 
 # Add tool which will fix init process
 RUN apk add dumb-init
@@ -9,7 +9,9 @@ WORKDIR /usr/src/app
 
 COPY --chown=node:node package.json .
 
-RUN npm install
+COPY --chown=node:node package-lock.json .
+
+RUN npm ci --only=production
 
 COPY --chown=node:node . .
 
