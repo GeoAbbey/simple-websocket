@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY: ghcr.io
+  REGISTRY: docker.pkg.github.com
   REPO: GeoAbbey/simple-websocket/nodejs-deploy
   CONTAINER: nodejs-deploy
 
@@ -25,13 +25,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
+        uses: mr-smithers-excellent/docker-build-push@v5
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ${{ env.REGISTRY }}
-          repository: ${{ env.REPO }}
-          tag_with_ref: true
+          image: ${{ env.REPO }}
   deploy:
     needs: [push_to_registry]
     name: Deploy to DigitalOcean
