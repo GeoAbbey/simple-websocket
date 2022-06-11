@@ -13,8 +13,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  REPO: geoabbey/nodejs-deploy/simple-websocket
-  CONTAINER: simple-websocket
+  REPO: GeoAbbey/simple-websocket/nodejs-deploy
+  CONTAINER: nodejs-deploy
 
 jobs:
   push_to_registry:
